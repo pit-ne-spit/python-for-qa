@@ -1,1 +1,1 @@
-# python-for-qa
+# here wil be auto tests and we will rock the world
