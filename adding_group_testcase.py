@@ -1,18 +1,13 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import NoAlertPresentException
-import unittest, time, re
+import unittest
 from group import Group
 
 class AddingGroupTestcase(unittest.TestCase):
     def setUp(self):
         self.wd = webdriver.Chrome(executable_path='./chromedriver')
         self.wd.implicitly_wait(30)
-        self.accept_next_alert = True
+
 
     def test_adding_group_testcase(self):
         wd = self.wd
@@ -66,29 +61,3 @@ class AddingGroupTestcase(unittest.TestCase):
     def open_home_page(self, wd):
         wd.get("http://localhost/addressbook/")
 
-    def is_element_present(self, how, what):
-        try: self.wd.find_element(by=how, value=what)
-        except NoSuchElementException as e: return False
-        return True
-
-    def is_alert_present(self):
-        try: self.wd.switch_to_alert()
-        except NoAlertPresentException as e: return False
-        return True
-
-    def close_alert_and_get_its_text(self):
-        try:
-            alert = self.wd.switch_to_alert()
-            alert_text = alert.text
-            if self.accept_next_alert:
-                alert.accept()
-            else:
-                alert.dismiss()
-            return alert_text
-        finally: self.accept_next_alert = True
-
-        def tearDown(self):
-            self.wd.quit()
-
-if __name__ == "__main__":
-    unittest.main()
