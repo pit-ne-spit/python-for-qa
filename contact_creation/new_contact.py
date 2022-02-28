@@ -15,7 +15,6 @@ class NewContactCreationTest(unittest.TestCase):
         self.login(wd, username="admin", password="secret")
         self.open_add_page(wd)
 
-        # first, last, middle names & nickname
         self.contact_infomation(wd, Contact(firstname="Petr", middlename="V.", lastname="Arapov", nickname="pit_ne_spit", company_name="any",company_title="title of what?",
                                              primary_address="Sadovaya st., 555", home_phone="789456123", mobile_phone="+98456321", work_phone="85295217563", fax="789632147",
                                              email1="email1@mail.ru", email2="email2@mail.ru", email3="email3@mail.ru", birthDay="3", birthMonth="June", birthYear="1988",
