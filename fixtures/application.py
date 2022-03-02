@@ -1,17 +1,32 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 
+
 class Application:
     def __init__(self):
-        self.wd = webdriver.Chrome(executable_path='./chromedriver')
+        self.wd = webdriver.Chrome(executable_path='../chromedriver')
         self.wd.implicitly_wait(30)
 
-    def logout(self):
+    def create_group(self, group):
         wd = self.wd
-        wd.find_element_by_link_text("Logout").click()
+        wd.find_element_by_link_text("groups").click()
+        # init group_creation creation
+        wd.find_element_by_name("new").click()
+        # fill group_creation form
+        wd.find_element_by_name("group_name").click()
+        wd.find_element_by_name("group_name").clear()
+        wd.find_element_by_name("group_name").send_keys(group.group_name)
+        wd.find_element_by_name("group_header").clear()
+        wd.find_element_by_name("group_header").send_keys(group.group_header)
+        wd.find_element_by_name("group_footer").clear()
+        wd.find_element_by_name("group_footer").send_keys(group.group_footer)
+        # submit group_creation creation
+        wd.find_element_by_name("submit").click()
+
 
     def contact_infomation(self, Contact):
         wd = self.wd
+        wd.find_element_by_link_text("add new").click()
         wd.find_element_by_name("firstname").send_keys(Contact.firstname)
         wd.find_element_by_name("middlename").send_keys(Contact.middlename)
         wd.find_element_by_name("lastname").send_keys(Contact.lastname)
@@ -40,10 +55,16 @@ class Application:
     def login(self, username, password):
         wd = self.wd
         wd.get("http://localhost/addressbook/")
+        wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
+        wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys(password)
-        wd.find_element_by_xpath("//input[@value='Login']").click()
-        wd.find_element_by_link_text("add new").click()
+        wd.find_element_by_id("LoginForm").submit()
+        wd.find_element_by_id("container").click()
+
+    def logout(self):
+        wd = self.wd
+        wd.find_element_by_link_text("Logout").click()
 
     def destroy(self):
         self.wd.quit()
