@@ -31,3 +31,4 @@ class ContactHelper:
         wd.find_element_by_name("address2").send_keys(Contact.secondary_address)
         wd.find_element_by_name("phone2").send_keys(Contact.secondary_phone)
         wd.find_element_by_name("notes").send_keys(Contact.notes)
+        wd.find_element_by_name("submit").click()
