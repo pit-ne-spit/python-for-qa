@@ -32,3 +32,11 @@ class ContactHelper:
         wd.find_element_by_name("phone2").send_keys(Contact.secondary_phone)
         wd.find_element_by_name("notes").send_keys(Contact.notes)
         wd.find_element_by_name("submit").click()
+
+    def delete(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to_alert().accept()
+
+
