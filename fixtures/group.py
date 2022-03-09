@@ -24,7 +24,7 @@ class GroupHelper:
         wd = self.app.wd
         self.open_groups_page()
         # select first group
-        wd.find_element_by_name("selected[]").click()
+        self.select_first_group()
         # submit deletion
         wd.find_element_by_name("delete").click()
         self.return_to_groups_page()
@@ -32,18 +32,36 @@ class GroupHelper:
     def edit_first_group(self, group):
         wd = self.app.wd
         self.open_groups_page()
-        wd.find_element_by_name("selected[]").click()
+        self.select_first_group()
         wd.find_element_by_name("edit").click()
         self.group_data(group)
         wd.find_element_by_name("update").click()
         self.return_to_groups_page()
 
+    def select_first_group(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
+
+    def modify_first_group(self, new_group_data):
+        wd = self.app.wd
+        self.open_groups_page()
+        self.select_first_group()
+        wd.find_element_by_name("edit").click()
+        self.group_data(new_group_data)
+        wd.find_element_by_name("update").click()
+        self.return_to_groups_page()
+
+
     def group_data(self, group):
         wd = self.app.wd
-        wd.find_element_by_name("group_name").click()
-        wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys(group.group_name)
-        wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys(group.group_header)
-        wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys(group.group_footer)
+        self.change_field_value("group_name", group.group_name)
+        self.change_field_value("group_header", group.group_header)
+        self.change_field_value("group_footer", group.group_footer)
+
+
+    def change_field_value(self, field_name, text):
+        wd = self.app.wd
+        if text is not None:
+            wd.find_element_by_name(field_name).click()
+            wd.find_element_by_name(field_name).clear()
+            wd.find_element_by_name(field_name).send_keys(text)
