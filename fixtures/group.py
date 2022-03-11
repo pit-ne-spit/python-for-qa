@@ -11,7 +11,6 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("group page").click()
 
-
     def create(self, group):
         wd = self.app.wd
         self.open_groups_page()
@@ -51,13 +50,11 @@ class GroupHelper:
         wd.find_element_by_name("update").click()
         self.return_to_groups_page()
 
-
     def group_data(self, group):
         wd = self.app.wd
         self.change_field_value("group_name", group.group_name)
         self.change_field_value("group_header", group.group_header)
         self.change_field_value("group_footer", group.group_footer)
-
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
