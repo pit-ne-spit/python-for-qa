@@ -1,11 +1,9 @@
 from models.group import Group
 
 def test_modify_group_name(app):
-    if app.group.count() == 0:
-        app.group.create(Group(group_name="test"))
     old_groups = app.group.get_group_list()
     group = Group(group_name="New group")
-    group.id == old_groups[0].id
+    group.id = old_groups[0].id
     app.group.modify_first_group(group)
     new_groups = app.group.get_group_list()
     assert len(old_groups) == len(new_groups)
