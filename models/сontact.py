@@ -3,7 +3,7 @@ from sys import maxsize
 class Contact:
     def __init__(self, firstname=None, middlename=None, lastname=None, nickname=None, email1=None, email2=None, email3=None, home_phone=None, mobile_phone=None,
                  work_phone=None, fax=None, birth_Day=None, birth_Month=None, birth_Year=None, ann_Day=None, ann_Month=None, ann_Year=None, secondary_address=None, secondary_phone=None, notes=None, company_title=None,
-                 company_name=None, homepage=None, primary_address=None, id=None):
+                 company_name=None, homepage=None, primary_address=None, id=None, all_phones_from_homepage=None, address=None, all_emails=None):
         self.firstname = firstname
         self.middlename = middlename
         self.lastname = lastname
@@ -29,13 +29,20 @@ class Contact:
         self.homepage = homepage
         self.primary_address = primary_address
         self.id = id
+        self.all_phones_from_homepage = all_phones_from_homepage
+        self.address = address
+        self.all_emails = all_emails
+
 
     def __repr__(self):
-        return "%s:%s:%s" % (self.id, self.firstname, self.lastname)
+        return "%s:%s:%s:%s:%s:%s:%s:%s:%s:%s" % (self.firstname, self.lastname, self.id, self.address,  self.home_phone,
+                                                  self.work_phone, self.mobile_phone, self.email1, self.email2, self.email3)
 
     def __eq__(self, other):
-        return (self.id is None or other.id is None or self.id == other.id) and self.lastname == other.lastname \
-               and self.firstname == other.firstname
+        return (self.id is None or other.id is None or self.id == other.id) and self.firstname == other.firstname \
+               and self.lastname == other.lastname and self.address == other.address, self.home_phone == other.home_phone, \
+               self.work_phone == other.work_phone, self.mobile_phone == other.mobile_phone, self.email1 == other.email1, \
+               self.email2 == other.email2, self.email3 == other.email3
 
     def id_or_max(self):
         if self.id:
