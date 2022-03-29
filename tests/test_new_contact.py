@@ -16,7 +16,7 @@ test_data = [
             nickname=random_string("FG", 10), company_name=random_string("weqc", 10), company_title=random_string("title", 10),
             primary_address=random_string("", 10), home_phone=random_digits("8", 10),
             mobile_phone=random_digits("+7", 10), work_phone=random_digits("8", 10), fax=random_digits("8", 10),
-            email1=random_string("", 20), email2=random_string("", 20), email3=random_string("", 7), birth_Day="3",
+            email1=random_string("", 8), email2=random_string("", 8), email3=random_string("", 8), birth_Day="3",
             birth_Month="June", birth_Year="1988", ann_Day="2", ann_Month="February", ann_Year="2000", homepage="hmpg.ru",
             secondary_address=random_string("Secar", 15), secondary_phone=random_digits("+7", 10), notes="no notes")
     for i in range(2)
