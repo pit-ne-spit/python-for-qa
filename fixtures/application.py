@@ -7,9 +7,9 @@ from fixtures.contact import ContactHelper
 class Application:
     def __init__(self, browser, base_url):
         if browser == "chrome":
-            self.wd = webdriver.Chrome('../python-for-qa/chromedriver')
+            self.wd = webdriver.Chrome(executable_path='../python-for-qa/chromedriver')
         elif browser == "firefox":
-            self.wd = webdriver.Firefox('../python-for-qa/geckodriver')
+            self.wd = webdriver.Firefox(executable_path='../python-for-qa/geckodriver')
         else:
             raise ValueError("Unrecognized browser %s" % browser)
         self.session = SessionHelper(self)
