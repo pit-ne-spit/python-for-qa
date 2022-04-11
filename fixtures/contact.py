@@ -47,6 +47,16 @@ class ContactHelper:
         self.open_contacts_page()
         self.contact_cache = None
 
+    def del_from_group_by_id(self, contact_id, group_id):
+        wd = self.app.wd
+        self.open_contacts_page()
+        wd.find_element_by_name("group").click()
+        wd.find_element_by_xpath("//form[@id='right']//option[@value='%s']" % group_id).click()
+        self.select_contact_by_id(contact_id)
+        wd.find_element_by_name("remove").click()
+        self.open_contacts_page()
+        self.contact_cache = None
+
     def select_contact_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
