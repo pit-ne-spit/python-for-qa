@@ -82,7 +82,7 @@ class ContactHelper:
         wd = self.app.wd
         self.open_contacts_page()
         self.select_contact_by_id(id)
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        wd.find_element_by_xpath("//a[@href='edit.php?id=%s']/img" % id).click()
         self.fill_contact_details(contact)
         wd.find_element_by_name("update").click()
         self.open_contacts_page()
