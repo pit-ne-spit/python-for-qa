@@ -9,13 +9,13 @@ def test_contact_data(app, db):
     for i in range(0, len(contacts_list_db)):
         contacts_from_homepage = contacts_list_ui[i]
         contacts_from_db = contacts_list_db[i]
-    assert contacts_from_homepage.id == contacts_from_db.id
-    assert contacts_from_homepage.firstname == contacts_from_db.firstname
-    assert contacts_from_homepage.lastname == contacts_from_db.lastname
-    assert contacts_from_homepage.address == contacts_from_db.address
-    assert contacts_from_homepage.address == contacts_from_db.address
-    assert contacts_from_homepage.all_phones_from_homepage == merge_phones_like_on_homepage(contacts_from_db)
-    assert contacts_from_homepage.all_emails == merge_emails_like_on_homepage(contacts_from_db)
+        assert contacts_from_homepage.id == contacts_from_db.id
+        assert contacts_from_homepage.firstname == contacts_from_db.firstname
+        assert contacts_from_homepage.lastname == contacts_from_db.lastname
+        assert contacts_from_homepage.address == contacts_from_db.address
+        assert contacts_from_homepage.address == contacts_from_db.address
+        assert contacts_from_homepage.all_phones_from_homepage == merge_phones_like_on_homepage(contacts_from_db)
+        assert contacts_from_homepage.all_emails == merge_emails_like_on_homepage(contacts_from_db)
 
 
 def clear(s):
