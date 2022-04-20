@@ -1,5 +1,4 @@
 from models.сontact import Contact
-from random import randrange
 from models.group import Group
 import random
 
@@ -7,6 +6,8 @@ import random
 def test_edit_some_contact(app, db, check_ui):
     if len(db.get_group_list()) == 0:
         app.group.create(Group(group_name="test"))
+    if len(db.get_contact_list()) > 0:
+        app.contact.delete_all_contacts()
     if len(db.get_contact_list()) == 0:
         app.contact.create(
             Contact(firstname="Petr", middlename="V.", lastname="Arapov", nickname="pit_ne_spit", company_name="any",
