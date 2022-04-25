@@ -1,6 +1,10 @@
 from models.сontact import Contact
 from models.group import Group
 import random
+from fixtures.orm import ORMFixture
+
+
+db1 = ORMFixture(host="127.0.0.1", name="addressbook", user="root", password="")
 
 
 def test_edit_some_contact(app, db, check_ui):
@@ -22,6 +26,7 @@ def test_edit_some_contact(app, db, check_ui):
     contact = random.choice(db.get_contact_list())
     group = random.choice(db.get_group_list())
     app.contact.add_contact_to_group_by_id(contact.id, group.id)
-
+    contacts_in_group = db1.get_contacts_in_group(group)
+    assert contact in contacts_in_group
 
 
